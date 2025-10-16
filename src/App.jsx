@@ -1,8 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { CiSun } from "react-icons/ci";
+import { FaRegMoon } from "react-icons/fa";
+
 export default function PasswordGenerator() {
   const [parol1, setParol1] = useState("");
   const [parol2, setParol2] = useState("");
+  const [ Light , setLight] = useState(false);
   
   function generate() {
     const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}[]<>?";
@@ -20,13 +24,16 @@ export default function PasswordGenerator() {
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#111827]">
-      <div className="bg-[#1e293b] text-white p-10  shadow-lg w-[420px]">
-        <h1  className="text-3xl font-bold leading-tight">
+      <div className={` p-10  shadow-lg w-[420px] ${Light ? "bg-[#ECFDF5] text-black" : 'bg-[#1e293b] text-white'}`}>
+        <div className="icon flex gpa-5">
+          <CiSun onClick={() => setLight(!Light)} className={`text-2xl  ${Light ? "hidden" : "felx"} cursor-pointer`} /><FaRegMoon onClick={() => setLight(!Light)} className={`text-xl ${Light ? 'flex' : 'hidden'} cursor-pointer`} />
+        </div>
+        <h1  className="text-3xl font-bold leading-tight ">
           Generate a <br />
           <span className="text-green-500">random password</span>
         </h1>
 
-        <p className="text-gray-400 mt-2 text-sm">
+        <p className={` mt-2 text-sm ${Light ? "text-gray-400" : "text-gray-600"}`}>
           Never use an insecure password again.
         </p>
 
